@@ -10,7 +10,7 @@ const Home = () => {
     const mdUpMatches = useMediaQuery('(min-width:768px)');
     return (
         <div className="bg">
-            <div className="main-container row d-flex justify-content-evenly">
+            <div className="container row d-flex justify-content-evenly">
                 {/* img div */}
                 <div className="col-md-5 col-10 text-center">
                     {!mdUpMatches && <EventText />}
