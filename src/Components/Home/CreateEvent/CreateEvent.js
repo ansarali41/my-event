@@ -1,47 +1,63 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './CreateEvent.css';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../../App';
 
 const CreateEvent = () => {
-    // registration form handler
-    const { register, handleSubmit, errors } = useForm();
+    const [user, setUser] = useContext(UserContext);
+    let navigate = useNavigate();
+
+    const { register, handleSubmit } = useForm();
     const onSubmit = eventData => {
-        console.log(eventData);
+        if (eventData) {
+            setUser(eventData);
+            navigate('/event');
+        }
     };
 
     return (
-        <div className="container text-center mt-5">
-            <div className="mb-2">
-                <Link to="/home">Home</Link>
-            </div>
-            <div className="registration-form ">
-                <h3>Create Event</h3>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <input name="fullName" defaultValue="name" ref={register({ required: true })} placeholder="Full Name" /> <br />
-                    {errors.fullName && <span style={{ color: 'red' }}>Full Name is required</span>} <br />
-                    <input name="email" defaultValue="email" ref={register({ required: true })} placeholder="Email or Username" /> <br />
-                    {errors.email && <span style={{ color: 'red' }}>Email or user name is required</span>} <br />
-                    <input name="date" type="date" ref={register({ required: true })} placeholder="Date" /> <br />
-                    {errors.date && <span style={{ color: 'red' }}>Date is required</span>} <br />
-                    <input name="description" ref={register({ required: true })} placeholder="Description" /> <br />
-                    {errors.description && <span style={{ color: 'red' }}>Description is required</span>} <br />
-                    <input name="volunteeringName" defaultValue="vol name" ref={register({ required: true })} placeholder="volunteering name" /> <br />
-                    {errors.volunteeringName && <span style={{ color: 'red' }}>Volunteer name is required</span>} <br />
-                    {/* <input name="fullName" defaultValue="name" ref={register({ required: true })} placeholder="Full Name" /> <br />
-                    {errors.fullName && <span style={{ color: 'red' }}>Full Name is required</span>} <br />
-                    <input name="email" defaultValue="email" ref={register({ required: true })} placeholder="Email or Username" /> <br />
-                    {errors.email && <span style={{ color: 'red' }}>Email or user name is required</span>} <br />
-                    <input name="date" type="date" ref={register({ required: true })} placeholder="Date" /> <br />
-                    {errors.date && <span style={{ color: 'red' }}>Date is required</span>} <br />
-                    <input name="description" ref={register({ required: true })} placeholder="Description" /> <br />
-                    {errors.description && <span style={{ color: 'red' }}>Description is required</span>} <br />
-                    <input name="volunteeringName" defaultValue="vol name" ref={register({ required: true })} placeholder="volunteering name" /> <br />
-                    {errors.volunteeringName && <span style={{ color: 'red' }}>Volunteer name is required</span>} <br /> */}
-                    {/* <Link to="/registrationList"> */}
-                    <input className="bg-primary text-white" type="submit" value="Registration" />
-                    {/* </Link> */}
-                </form>
+        <div className="bg" style={{ height: '100%' }}>
+            <div className="container text-center">
+                <div className="mb-2 d-flex justify-content-start">
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Button className="create-btn" variant="contained">
+                            Back to Home
+                        </Button>
+                    </Link>
+                </div>
+                <div className="registration-form ">
+                    <h3>Create an Event</h3>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <input name="eventName" ref={register({ required: true })} placeholder="Event Name" className="form-control" /> <br />
+                        {/*  */}
+                        <input name="hostName" ref={register({ required: true })} placeholder="Host Name" className="form-control" /> <br />
+                        {/*  */}
+                        <input name="hostName" ref={register({ required: true })} placeholder="Host Name" className="form-control" /> <br />
+                        {/*  */}
+                        <p className="text-start">Start Date:</p>
+                        <input name="startDate" type="date" ref={register({ required: true })} placeholder="Start Date" className="form-control" /> <br />
+                        {/*  */}
+                        <p className="text-start">End Date:</p>
+                        <input name="endDate" type="date" ref={register({ required: true })} placeholder="End Date" className="form-control" /> <br />
+                        {/*  */}
+                        <input name="location" ref={register({ required: true })} placeholder="location" className="form-control" /> <br />
+                        {/*  */}
+                        <div className="pb-3">
+                            <Button variant="contained" component="label" style={{ width: '100%' }}>
+                                Upload
+                                <input hidden accept="image/*" type="file" />
+                            </Button>
+                        </div>
+                        <br />
+                        {/* next button */}
+                        <Button className="create-btn" variant="contained" type="submit">
+                            Next
+                        </Button>
+                    </form>
+                </div>
             </div>
         </div>
     );
