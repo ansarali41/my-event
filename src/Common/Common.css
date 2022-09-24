@@ -1,0 +1,42 @@
+.create-btn {
+    background: linear-gradient(90deg, #8456ec 3.25%, #e87bf8 100%);
+    border-radius: 10px;
+    width: 320px;
+    height: 55px;
+}
+
+.title-1 {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 64px;
+    color: #240d57;
+}
+.title-middle {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 74px;
+    background: linear-gradient(90deg, #8456ec 24.2%, #e87bf8 120.46%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.last-text {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #4f4f4f;
+}
+@media (max-width: 768px) {
+    .title-1 {
+        font-size: 36px;
+        line-height: 41px;
+    }
+    .title-middle {
+        font-size: 36px;
+        line-height: 41px;
+    }
+    .last-text {
+        font-size: 16px;
+        line-height: 18px;
+    }
+}
